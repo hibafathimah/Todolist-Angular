@@ -1,0 +1,49 @@
+
+<h1 class="text-center mt-5 font-weight-bold bg-todo ">TODO</h1>
+
+<div class= "mx-auto form-box d-block">
+
+  <div class="mx-auto form-group">
+   <label for="" >Title:</label>
+  <br>
+  <input type="text"  [(ngModel)]="input" placeholder="Enter the title" class="form-control col-lg-6"> 
+  </div>
+  <br><br>
+  <div class="form-group mt-5">
+  <label for="" >Description:</label>
+  <br>
+  <input type="text"  [(ngModel)]="input1" placeholder="Enter the Description" class="form-control mb-5 col-lg-6">
+  </div>
+  
+  <br><br>
+  <button class="add-btn " [disabled]="disable()" (click)="add()">Add</button>
+</div>
+
+
+<div>
+  <h2 class="text-center mt-5 bg-todolist ">TODOS</h2>
+  <div  *ngFor="let todo of todosarr;let i=index">
+    <div>
+      <div ngbAccordion >
+        <div ngbAccordionItem >
+          <h2 ngbAccordionHeader >
+            <button  [ngClass]="{strike:todosarr[i].checked,nostrike:!todosarr[i].checked}" 
+            ngbAccordionButton style="width: 60%;overflow-wrap: break-word;" class="acc">{{todo.title}}
+            </button>
+          </h2>
+        <div ngbAccordionCollapse >
+          <div ngbAccordionBody class="description">
+            <ng-template >{{todo.des}}</ng-template>      
+          </div>
+          <div class="btn-box">
+            <button class="edit" (click)="edit(i)">EDIT</button>
+        <button class="delete" (click)="delete(i)">DELETE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
